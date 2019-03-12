@@ -2,12 +2,30 @@
 
 project=$1
 cname=$2
-zone=$3
+region=$3
+zone=$4
 
 #環境配置
 gcloud config set project ${project}
 gcloud config set compute/zone ${zone}
 gcloud container clusters get-credentials ${cname}
+
+# pub / sub 清除
+gcloud pubsub subscriptions delete pub-question-sub-firestore
+gcloud pubsub topics delete pub-question
+
+gcloud pubsub subscriptions delete pub-score-sub-firestore
+gcloud pubsub topics delete pub-user
+
+gcloud pubsub subscriptions delete pub-score-sub-count_question
+gcloud pubsub subscriptions delete pub-score-sub-count_user
+gcloud pubsub subscriptions delete pub-score-sub-analysis
+gcloud pubsub subscriptions delete pub-score-sub-firestore
+gcloud pubsub topics delete pub-score
+
+gcloud pubsub subscriptions delete pub-finish-sub-score
+gcloud pubsub subscriptions delete pub-finish-sub-firestore
+gcloud pubsub topics delete pub-finish
 
 #取得 k8s 後面 nodes 的 name
 igawk="match(\$1, /^gke\-${cname}\-default\-pool/){print \$1}"

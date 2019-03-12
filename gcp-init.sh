@@ -84,3 +84,20 @@ gcloud compute forwarding-rules create ${cname}-http \
     --target-http-proxy ${cname}-http-proxy \
     --ports 80 \
     --global
+
+# pub / sub 建置
+gcloud pubsub topics create pub-finish
+gcloud pubsub subscriptions create --topic pub-finish pub-finish-sub-firestore
+gcloud pubsub subscriptions create --topic pub-finish pub-finish-sub-score
+
+gcloud pubsub topics create pub-score
+gcloud pubsub subscriptions create --topic pub-score pub-score-sub-firestore
+gcloud pubsub subscriptions create --topic pub-score pub-score-sub-analysis
+gcloud pubsub subscriptions create --topic pub-score pub-score-sub-count_user
+gcloud pubsub subscriptions create --topic pub-score pub-score-sub-count_question
+
+gcloud pubsub topics create pub-user
+gcloud pubsub subscriptions create --topic pub-user pub-score-sub-firestore
+
+gcloud pubsub topics create pub-question
+gcloud pubsub subscriptions create --topic pub-question pub-question-sub-firestore
