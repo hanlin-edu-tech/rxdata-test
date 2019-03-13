@@ -10,11 +10,13 @@ gcloud config set project ${project}
 gcloud config set compute/zone ${zone}
 gcloud container clusters get-credentials ${cname}
 
+# gcp console 清除 firestore 專案
+
 # pub / sub 清除
 gcloud pubsub subscriptions delete pub-question-sub-firestore
 gcloud pubsub topics delete pub-question
 
-gcloud pubsub subscriptions delete pub-score-sub-firestore
+gcloud pubsub subscriptions delete pub-user-sub-firestore
 gcloud pubsub topics delete pub-user
 
 gcloud pubsub subscriptions delete pub-score-sub-count_question

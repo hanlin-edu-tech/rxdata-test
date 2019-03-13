@@ -97,7 +97,9 @@ gcloud pubsub subscriptions create --topic pub-score pub-score-sub-count_user
 gcloud pubsub subscriptions create --topic pub-score pub-score-sub-count_question
 
 gcloud pubsub topics create pub-user
-gcloud pubsub subscriptions create --topic pub-user pub-score-sub-firestore
+gcloud pubsub subscriptions create --topic pub-user pub-user-sub-firestore
 
 gcloud pubsub topics create pub-question
 gcloud pubsub subscriptions create --topic pub-question pub-question-sub-firestore
+
+# gcp console 建立 firestore 專案

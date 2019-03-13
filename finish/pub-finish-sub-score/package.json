@@ -1,0 +1,11 @@
+{
+  "name": "pub-finish-sub-score",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "dependencies": {
+    "mongodb": "~3.1.13",
+    "@google-cloud/pubsub": "~0.27.1"
+  }
+}
