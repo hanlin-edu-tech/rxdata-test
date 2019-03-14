@@ -10,7 +10,7 @@ let mongoDb;
 const client = new PubSub.v1.SubscriberClient();
 
 const project = "rxdata-test";
-const subscription = "pub-finish-sub-firestore";
+const subscription = "pub-score-sub-firestore";
 const formattedSubscription = client.subscriptionPath(project, subscription);
 
 const maxMessages = 1;
@@ -29,9 +29,8 @@ async function updateFirestore(examId) {
     let exam = await mongoDb.collection("exam").findOne({_id:examId})
     var docRef = fireDb.collection('exam').doc(exam._id);
     await docRef.set({
-        _id: exam._id,
-        user: exam.user,
-        finish: exam.status.finish
+        correct: exam.correct,
+        score: exam.score
     }, {merge: true});
 }
 
