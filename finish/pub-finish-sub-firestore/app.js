@@ -1,4 +1,4 @@
-const Mongodb = require('mongodb');
+const {MongoClient} = require('mongodb');
 const PubSub = require('@google-cloud/pubsub');
 const Firestore = require('@google-cloud/firestore');
 
@@ -64,7 +64,7 @@ async function pull() {
 
 async function connectMongodb() {
     monogdbClient = await MongoClient.connect(mongodb_uri, { useNewUrlParser: true });
-    mongoDb = client.db("rxdata-test");
+    mongoDb = monogdbClient.db("rxdata-test");
 }
 
 async function run() {
