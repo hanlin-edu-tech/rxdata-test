@@ -1,5 +1,17 @@
 extends layout
 
 block content
-  h1= Exam
-  p Exam Page
+    h3 選擇學生
+    div
+        select(id="user")
+            each i in [0,1,2,3,4]
+                option(value='u_'+i)= '學生'+i
+    h3 作答資訊
+    each i in [0,1,2,3,4]
+        div
+            p= '第'+(i+1)+'題'
+            select(id="q_"+i)
+                each i in [0,1,2,3,4]
+                    option(value=i)= (i+1)
+    div
+        button(id="finish") 交卷
