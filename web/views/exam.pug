@@ -3,7 +3,7 @@ extends layout
 block content
     h3 選擇學生
     div
-        select(id="user")
+        select#user
             each i in [0,1,2,3,4]
                 option(value='u_'+i)= '學生'+i
     h3 作答資訊
@@ -14,4 +14,4 @@ block content
                 each i in [0,1,2,3,4]
                     option(value=i)= (i+1)
     div
-        button(id="finish") 交卷
+        button#finish 交卷

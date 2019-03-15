@@ -1,5 +1,20 @@
 extends layout
 
+block headContent
+  script(src='https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js')
+  script(src='https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js')
+  script var token = '#{token}';
+
 block content
-  h1= Exam
-  p Report Page
+  div#score.card
+    h3 分數
+    div.card-content Loading...
+  div#user.card
+    h3 使用者
+    div.card-content Loading...
+  div#analysis.card
+    h3 知識點分析
+    div.card-content Loading...
+  div#answer.card
+    h3 作答情況
+    div.card-content Loading...

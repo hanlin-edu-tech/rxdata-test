@@ -26,6 +26,7 @@ const fireDb = new Firestore({
 });
 
 async function updateFirestore(examId) {
+    console.log(`updateFirestore ${examId}`);
     let exam = await mongoDb.collection("exam").findOne({_id:examId})
     var docRef = fireDb.collection('exam').doc(exam._id);
     await docRef.set({
@@ -43,7 +44,7 @@ async function ack(ackId) {
         if(err){
             setTimeout(ack, 1000, ackId);
         }else{
-            console.log(`Acknowledge ${message.message.data}`);
+            console.log(`Acknowledge ${ackId}`);
         }
     });
 }
@@ -54,11 +55,11 @@ async function pull() {
         let message = response.receivedMessages[0]
         console.log(`Message ${message.message.data}`);
 
-        await updateFirestore(message.message.data);
+        await updateFirestore(message.message.data.toString());
 
         ack(message.ackId);
     }catch(err){
-        console.log(err);
+        //console.log(err);
     }
 }
 
