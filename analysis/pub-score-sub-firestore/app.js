@@ -42,7 +42,7 @@ async function ack(ackId) {
         if(err){
             setTimeout(ack, 1000, ackId);
         }else{
-            console.log(`Acknowledge ${message.message.data}`);
+            console.log(`Acknowledge ${ackId}`);
         }
     });
 }
@@ -53,11 +53,11 @@ async function pull() {
         let message = response.receivedMessages[0]
         console.log(`Message ${message.message.data}`);
 
-        await updateFirestore(message.message.data);
+        await updateFirestore(message.message.data.toString());
 
         ack(message.ackId);
     }catch(err){
-        console.log(err);
+        //console.log(err);
     }
 }
 
