@@ -1,0 +1,11 @@
+{
+  "name": "fake-data",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node ./data-create.js"
+  },
+  "dependencies": {
+    "mongodb": "~3.1.13",
+    "firebase-admin": "~7.1.0"
+  }
+}
