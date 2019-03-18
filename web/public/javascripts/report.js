@@ -14,10 +14,19 @@ $(function(){
   function updateUser(exam){
     if(!unUserSub){
       unUserSub = db.collection("user").doc(exam.user).onSnapshot(function(userSnapshot){
-        $('#user.card .card-content').html(`<span class="user">${userSnapshot.data().name}</span>`)
+        let userData = userSnapshot.data();
+        $('#user.card .card-content').html(`
+          <div class="user">${userData.name}</div>
+          <div class="count">
+            <span>${userData.correct}</span>
+            <span>/</span>
+            <span>${userData.total}</span>
+            <span>=</span>
+            <span>${Math.floor(userData.correct / userData.total * 100)}</span>
+            <span>%</span>
+          </div>`);
       });
-    }
-  }
+    }}
 
   function updateScore(exam){
     $('#score.card .card-content').html(`<span class="score">${exam.score}</span>`)

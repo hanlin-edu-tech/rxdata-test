@@ -1,0 +1,12 @@
+{
+  "name": "watcher-user",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "dependencies": {
+    "@google-cloud/pubsub": "~0.27.1",
+    "mongodb": "~3.1.13",
+    "npm": "^6.9.0"
+  }
+}

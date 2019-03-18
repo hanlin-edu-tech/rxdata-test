@@ -23,7 +23,7 @@ web
 
 更新使用者資訊
 - watcher-user (監看 user count 的變化，把有變動的 id 寫入 pub-user)
-- pub-score-sub-firestore (把 user count 寫入 firestore 的 user)
+- pub-user-sub-firestore (把 user count 寫入 firestore 的 user)
 
 ---
 
