@@ -1,5 +1,18 @@
 extends layout
 
+block headContent
+  script(src='https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js')
+  script(src='https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js')
+  script(src='https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js')
+  script(src='/javascripts/firebase-config.js')
+  script var token = '#{token}';
+
 block content
-  h1= Exam
-  p Exam List Page
+    h3 選擇學生
+    div
+        select#user
+            each i in [0,1,2,3,4]
+                option(value='u_'+i)= '學生'+i
+    h3 成績列表
+    ul#reports
+    div#loading loading...

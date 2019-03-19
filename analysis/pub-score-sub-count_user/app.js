@@ -34,7 +34,7 @@ async function calculated(examId){
 
     let exam = examResult.value;
     if(exam != null){
-    let correctNum = 0;
+        let correctNum = 0;
         for(var i=0 ; i<exam.correct.length ; i++){
             if(exam.correct[i]){
                 correctNum += 1;

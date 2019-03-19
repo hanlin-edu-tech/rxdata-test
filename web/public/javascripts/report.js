@@ -2,10 +2,15 @@ $(function(){
   
   firebase.initializeApp(firebaseConfig);
 
-  firebase.auth().signInWithCustomToken(token).catch(function(error) {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-  });
+  firebase.auth().signInWithCustomToken(token)
+    .catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;})
+    .then(function(){
+      const unExamSub = db.collection("exam").doc(urlParams.get("id")).onSnapshot(function(snapshot){
+        updateExam(snapshot.data());
+      });
+    });
 
   const db = firebase.firestore();
   const urlParams = new URLSearchParams(window.location.search);
@@ -43,9 +48,5 @@ $(function(){
       }      
     }
   }
-
-  const unExamSub = db.collection("exam").doc(urlParams.get("id")).onSnapshot(function(snapshot){
-    updateExam(snapshot.data());
-  });
 
 });
