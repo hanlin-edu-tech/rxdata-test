@@ -41,8 +41,17 @@ export MONGODB_URI=[URI]
 gcp-clean.sh [PROJECT] [CNAME] [REGION] [ZONE]
 ```
 
+
 docker build
+
 web
+
 ```
 docker build -f web/Dockerfile -t rxdata-web --build-arg gcp_credentials_path=[PATH] --build-arg mongodb_uri=[URI] .
+```
+
+pub-finish-sub-score
+
+```
+docker build -f finish/pub-finish-sub-score/Dockerfile -t pub-finish-sub-score --build-arg gcp_credentials_path=[PATH] --build-arg mongodb_uri=[URI] .
 ```
