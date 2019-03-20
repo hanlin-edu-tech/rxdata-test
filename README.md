@@ -40,3 +40,9 @@ export MONGODB_URI=[URI]
 ```
 gcp-clean.sh [PROJECT] [CNAME] [REGION] [ZONE]
 ```
+
+docker build
+web
+```
+docker build -f web/Dockerfile --build-arg gcp_credentials_path=[PATH] --build-arg mongodb_uri=[URI] .
+```
