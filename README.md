@@ -50,6 +50,13 @@ web
 docker build -f web/Dockerfile -t rxdata-web --build-arg gcp_credentials_path=[PATH] --build-arg mongodb_uri=[URI] .
 ```
 
+watcher-finish
+
+```
+docker build -f finish/watcher-finish/Dockerfile -t watcher-finish --build-arg gcp_credentials_path=[PATH] --build-arg mongodb_uri=[URI] .
+```
+
+
 pub-finish-sub-score
 
 ```
