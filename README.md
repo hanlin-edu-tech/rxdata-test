@@ -34,6 +34,7 @@ web
 ```
 gcp-init.sh [PROJECT] [CNAME] [REGION] [ZONE]
 export GOOGLE_APPLICATION_CREDENTIALS=[PATH]
+export GCF_CREDENTIALS_PATH=[PATH]
 export MONGODB_URI=[URI]
 ```
 
@@ -44,26 +45,51 @@ gcp-clean.sh [PROJECT] [CNAME] [REGION] [ZONE]
 
 docker build
 
-web
+
+# web
 
 ```
-docker build -f web/Dockerfile -t rxdata-web --build-arg gcp_credentials_path=[PATH] --build-arg mongodb_uri=[URI] .
+docker build -f web/Dockerfile -t rxdata-web --build-arg gcp_credentials_path=$GCF_CREDENTIALS_PATH --build-arg mongodb_uri=$MONGODB_URI .
 ```
+
+
+# finish
 
 watcher-finish
 
 ```
-docker build -f finish/watcher-finish/Dockerfile -t watcher-finish --build-arg gcp_credentials_path=[PATH] --build-arg mongodb_uri=[URI] .
+docker build -f finish/watcher-finish/Dockerfile -t watcher-finish --build-arg gcp_credentials_path=$GCF_CREDENTIALS_PATH --build-arg mongodb_uri=$MONGODB_URI .
 ```
 
 pub-finish-sub-firestore
 
 ```
-docker build -f finish/pub-finish-sub-firestore/Dockerfile -t pub-finish-sub-firestore --build-arg gcp_credentials_path=[PATH] --build-arg mongodb_uri=[URI] .
+docker build -f finish/pub-finish-sub-firestore/Dockerfile -t pub-finish-sub-firestore --build-arg gcp_credentials_path=$GCF_CREDENTIALS_PATH --build-arg mongodb_uri=$MONGODB_URI .
 ```
 
 pub-finish-sub-score
 
 ```
-docker build -f finish/pub-finish-sub-score/Dockerfile -t pub-finish-sub-score --build-arg gcp_credentials_path=[PATH] --build-arg mongodb_uri=[URI] .
+docker build -f finish/pub-finish-sub-score/Dockerfile -t pub-finish-sub-score --build-arg gcp_credentials_path=$GCF_CREDENTIALS_PATH --build-arg mongodb_uri=$MONGODB_URI .
+```
+
+
+#analysis
+
+watcher-score
+
+```
+docker build -f analysis/watcher-score/Dockerfile -t watcher-score --build-arg gcp_credentials_path=$GCF_CREDENTIALS_PATH --build-arg mongodb_uri=$MONGODB_URI .
+```
+
+pub-score-sub-firestore
+
+```
+docker build -f analysis/pub-score-sub-firestore/Dockerfile -t pub-score-sub-firestore --build-arg gcp_credentials_path=$GCF_CREDENTIALS_PATH --build-arg mongodb_uri=$MONGODB_URI .
+```
+
+pub-score-sub-count_user
+
+```
+docker build -f analysis/pub-score-sub-count_user/Dockerfile -t pub-score-sub-count_user --build-arg gcp_credentials_path=$GCF_CREDENTIALS_PATH --build-arg mongodb_uri=$MONGODB_URI .
 ```
