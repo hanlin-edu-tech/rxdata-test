@@ -1,0 +1,71 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-nginx
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: rxdata-web
+          servicePort: 80
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: rxdata-web
+  labels:
+    app: rxdata-web
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 99%
+      maxSurge: 100%
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: rxdata-web
+  template:
+    metadata:
+      labels:
+        app: rxdata-web
+    spec:
+      containers:
+      - name: rxdata-web
+        image: gcr.io/$GCP_PROJECT/rxdata-web:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 100m
+            memory: 200Mi
+        ports:
+        - containerPort: 3000
+        livenessProbe:
+          exec:
+            command:
+            - echo
+            - live
+          initialDelaySeconds: 10
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rxdata-web
+  labels:
+    app: rxdata-web
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  selector:
+    app: rxdata-web

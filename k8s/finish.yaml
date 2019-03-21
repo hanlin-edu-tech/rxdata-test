@@ -1,0 +1,75 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: pub-finish-sub-firestore
+  labels:
+    app: pub-finish-sub-firestore
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 99%
+      maxSurge: 100%
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: pub-finish-sub-firestore
+  template:
+    metadata:
+      labels:
+        app: pub-finish-sub-firestore
+    spec:
+      containers:
+      - name: pub-finish-sub-firestore
+        image: gcr.io/$GCP_PROJECT/pub-finish-sub-firestore:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+        livenessProbe:
+          exec:
+            command:
+            - echo
+            - live
+          initialDelaySeconds: 10
+          periodSeconds: 10
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: pub-finish-sub-score
+  labels:
+    app: pub-finish-sub-score
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 99%
+      maxSurge: 100%
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: pub-finish-sub-score
+  template:
+    metadata:
+      labels:
+        app: pub-finish-sub-score
+    spec:
+      containers:
+      - name: pub-finish-sub-score
+        image: gcr.io/$GCP_PROJECT/pub-finish-sub-score:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+        livenessProbe:
+          exec:
+            command:
+            - echo
+            - live
+          initialDelaySeconds: 10
+          periodSeconds: 10

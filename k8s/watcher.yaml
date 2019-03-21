@@ -1,0 +1,113 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: watcher-finish
+  labels:
+    app: watcher-finish
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 99%
+      maxSurge: 100%
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: watcher-finish
+  template:
+    metadata:
+      labels:
+        app: watcher-finish
+    spec:
+      containers:
+      - name: watcher-finish
+        image: gcr.io/$GCP_PROJECT/watcher-finish:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+        livenessProbe:
+          exec:
+            command:
+            - echo
+            - live
+          initialDelaySeconds: 10
+          periodSeconds: 10
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: watcher-score
+  labels:
+    app: watcher-score
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 99%
+      maxSurge: 100%
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: watcher-score
+  template:
+    metadata:
+      labels:
+        app: watcher-score
+    spec:
+      containers:
+      - name: watcher-score
+        image: gcr.io/$GCP_PROJECT/watcher-score:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+        livenessProbe:
+          exec:
+            command:
+            - echo
+            - live
+          initialDelaySeconds: 10
+          periodSeconds: 10
+---
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: watcher-user
+  labels:
+    app: watcher-user
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 99%
+      maxSurge: 100%
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: watcher-user
+  template:
+    metadata:
+      labels:
+        app: watcher-user
+    spec:
+      containers:
+      - name: watcher-user
+        image: gcr.io/$GCP_PROJECT/watcher-user:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+        livenessProbe:
+          exec:
+            command:
+            - echo
+            - live
+          initialDelaySeconds: 10
+          periodSeconds: 10

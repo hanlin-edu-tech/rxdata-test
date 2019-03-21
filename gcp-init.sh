@@ -30,9 +30,9 @@ gcloud compute firewall-rules create ${cname}-internal \
 #GCP 上建 k8s
 gcloud container clusters create ${cname} \
     --image-type=cos \
-    --cluster-version=1.12.5-gke.10 \
+    --cluster-version=1.12.5-gke.5 \
     --num-nodes 1 \
-    --machine-type g1-small \
+    --machine-type n1-standard-4 \
     --network ${cname}-vpc \
     --subnetwork ${cname}-vpc-subnets
 
