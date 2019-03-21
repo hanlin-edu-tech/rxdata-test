@@ -38,11 +38,10 @@ async function pull() {
     }
     
     if(examId){
-        await Calculator.calculate(message.message.data.toString());
+        await Calculator.calculate(examId);
         ack(message.ackId);
     }
 }
-
 
 async function run() {
     while(true){

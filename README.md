@@ -56,6 +56,11 @@ watcher-finish
 docker build -f finish/watcher-finish/Dockerfile -t watcher-finish --build-arg gcp_credentials_path=[PATH] --build-arg mongodb_uri=[URI] .
 ```
 
+pub-finish-sub-firestore
+
+```
+docker build -f finish/pub-finish-sub-firestore/Dockerfile -t pub-finish-sub-firestore --build-arg gcp_credentials_path=[PATH] --build-arg mongodb_uri=[URI] .
+```
 
 pub-finish-sub-score
 
