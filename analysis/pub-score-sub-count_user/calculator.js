@@ -1,4 +1,4 @@
-const {MongoClient} = require('mongodb');
+const {MongoClient, Long} = require('mongodb');
 
 const mongodb_uri = process.env.MONGODB_URI;
 
