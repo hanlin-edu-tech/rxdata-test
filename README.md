@@ -93,3 +93,18 @@ pub-score-sub-count_user
 ```
 docker build -f analysis/pub-score-sub-count_user/Dockerfile -t pub-score-sub-count_user --build-arg gcp_credentials_path=$GCF_CREDENTIALS_PATH --build-arg mongodb_uri=$MONGODB_URI .
 ```
+
+
+#user
+
+watcher-user
+
+```
+docker build -f user/watcher-user/Dockerfile -t watcher-user --build-arg gcp_credentials_path=$GCF_CREDENTIALS_PATH --build-arg mongodb_uri=$MONGODB_URI .
+```
+
+pub-user-sub-firestore
+
+```
+docker build -f user/pub-user-sub-firestore/Dockerfile -t pub-user-sub-firestore --build-arg gcp_credentials_path=$GCF_CREDENTIALS_PATH --build-arg mongodb_uri=$MONGODB_URI .
+```
